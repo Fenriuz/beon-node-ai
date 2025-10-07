@@ -1,12 +1,11 @@
-import axios from 'axios';
+import { embeddings } from './services/embbedings.js';
+import { getVectorStore } from './services/rag.js';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const main = async () => {
-  const response = await axios.post('https://jsonplaceholder.typicode.com/posts', {
-    title: 'foo',
-    body: 'bar',
-    userId: 1,
-  });
-  console.log(response.data);
+  const vectorStore = await getVectorStore();
+  const embedding = await embeddings.embedQuery('The mission of BEON.tech?');
 };
 
 main();
